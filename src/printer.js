@@ -10,7 +10,7 @@ var PDFReference = require('pdfkit/js/reference');
 var sizes = require('./standardPageSizes');
 var ImageMeasure = require('./imageMeasure');
 var textDecorator = require('./textDecorator');
-var FontProvider = require('./fontProvider');
+//var FontProvider = require('./fontProvider');
 
 ////////////////////////////////////////
 // PdfPrinter
@@ -91,7 +91,7 @@ PdfPrinter.prototype.createPdfKitDocument = function(docDefinition, options) {
 	this.pdfKitDoc = new PdfKit({ size: [ pageSize.width, pageSize.height ], compress: false});
 	this.pdfKitDoc.info.Producer = 'pdfmake';
 	this.pdfKitDoc.info.Creator = 'pdfmake';
-	
+
 	// pdf kit maintains the uppercase fieldnames from pdf spec
 	// to keep the pdfmake api consistent, the info field are defined lowercase
 	if(docDefinition.info){
@@ -102,7 +102,7 @@ PdfPrinter.prototype.createPdfKitDocument = function(docDefinition, options) {
 		this.pdfKitDoc.info.Subject = docDefinition.info.subject ? docDefinition.info.subject : null;
 		this.pdfKitDoc.info.Keywords = docDefinition.info.keywords ? docDefinition.info.keywords : null;
 	}
-	
+
 	this.fontProvider = new FontProvider(this.fontDescriptors, this.pdfKitDoc);
 
   docDefinition.images = docDefinition.images || {};

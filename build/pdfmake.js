@@ -2030,7 +2030,7 @@
 	var sizes = __webpack_require__(102);
 	var ImageMeasure = __webpack_require__(103);
 	var textDecorator = __webpack_require__(104);
-	var FontProvider = __webpack_require__(9);
+	//var FontProvider = require('./fontProvider');
 
 	////////////////////////////////////////
 	// PdfPrinter
@@ -2111,7 +2111,7 @@
 		this.pdfKitDoc = new PdfKit({ size: [ pageSize.width, pageSize.height ], compress: false});
 		this.pdfKitDoc.info.Producer = 'pdfmake';
 		this.pdfKitDoc.info.Creator = 'pdfmake';
-		
+
 		// pdf kit maintains the uppercase fieldnames from pdf spec
 		// to keep the pdfmake api consistent, the info field are defined lowercase
 		if(docDefinition.info){
@@ -2122,7 +2122,7 @@
 			this.pdfKitDoc.info.Subject = docDefinition.info.subject ? docDefinition.info.subject : null;
 			this.pdfKitDoc.info.Keywords = docDefinition.info.keywords ? docDefinition.info.keywords : null;
 		}
-		
+
 		this.fontProvider = new FontProvider(this.fontDescriptors, this.pdfKitDoc);
 
 	  docDefinition.images = docDefinition.images || {};
@@ -20132,7 +20132,7 @@
 	  debug('flow', state.flowing);
 	  if (state.flowing) {
 	    do {
-	      var chunk = stream.read();
+	      var chunk = stream.read(Number.MAX_SAFE_INTEGER);
 	    } while (null !== chunk && state.flowing);
 	  }
 	}
