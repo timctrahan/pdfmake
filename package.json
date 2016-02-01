@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "expose-loader": "^0.6.0",
+    "grunt": "^0.4.5",
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.10.0",
     "gulp-rename": "^1.2.2",
