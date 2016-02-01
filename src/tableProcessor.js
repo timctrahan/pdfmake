@@ -305,7 +305,7 @@ TableProcessor.prototype.endRow = function(rowIndex, writer, pageBreaks) {
           if(fillColor ) {
             var wBorder = (leftBorder || rightBorder) ? this.layout.vLineWidth(colIndex, this.tableNode) : 0;
             var xf = xs[i].x+wBorder;
-            var yf = y1 - hzLineOffset;
+            var yf = this.dontBreakRows ? hzLineOffset : y1 - hzLineOffset;
             writer.addVector({
               type: 'rect',
               x: xf,
@@ -357,11 +357,9 @@ TableProcessor.prototype.endRow = function(rowIndex, writer, pageBreaks) {
     if(this.dontBreakRows) {
       writer.tracker.auto('pageChanged',
         function() {
-          self.drawHorizontalLine(rowIndex, writer);
         },
         function() {
           writer.commitUnbreakableBlock();
-          self.drawHorizontalLine(rowIndex, writer);
         }
       );
     }
